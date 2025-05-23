@@ -32,8 +32,19 @@ namespace CraftingSim.Model
         public void LoadRecipesFromFile(string[] recipeFiles)
         {
             string[] recipes = new string[20];
+            foreach (string file in recipeFiles)
+            {
+                StreamReader rs = new StreamReader(file);
+                do
+                {
+                    string text = rs.ReadLine()
+                } while (text != "")
+                foreach (string text in rs.ReadLine())
+                {
 
-            //IMaterial material = inventory.GetMaterial(value);
+                }
+            }
+            IMaterial material = inventory.GetMaterial(value)
 
             
 
