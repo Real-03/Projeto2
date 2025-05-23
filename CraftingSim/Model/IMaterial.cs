@@ -10,8 +10,10 @@ namespace CraftingSim.Model
     public interface IMaterial : IEquatable<IMaterial>
     {
         //Id of the material
-        int Id { get; }
+        int Id { get;}
         //name of the material
-        string Name { get; }
+        string Name { get;}
+
+
     }
 }

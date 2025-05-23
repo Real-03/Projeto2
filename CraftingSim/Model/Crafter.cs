@@ -31,6 +31,13 @@ namespace CraftingSim.Model
         /// <param name="recipeFiles">Array of file paths</param>
         public void LoadRecipesFromFile(string[] recipeFiles)
         {
+            string[] recipes = new string[20];
+
+            //IMaterial material = inventory.GetMaterial(value);
+
+            
+
+            
             //TODO Implement Me
         }
 

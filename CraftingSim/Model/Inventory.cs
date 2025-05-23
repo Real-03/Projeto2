@@ -1,5 +1,6 @@
 using System.Collections.Generic;
-
+using System;
+using System.IO;
 namespace CraftingSim.Model
 {
     /// <summary>
@@ -7,6 +8,7 @@ namespace CraftingSim.Model
     /// </summary>
     public class Inventory
     {
+        public Material material;
         /// <summary>
         /// Dictionary that contains all the materials the user has
         /// and the respective amount
@@ -39,6 +41,15 @@ namespace CraftingSim.Model
         public void AddMaterial(IMaterial material, int quantity)
         {
             //TODO Implement Me
+            if (materials.ContainsKey(material))
+            {
+                materials[material] = quantity;
+            }
+            else
+            {
+                materials.Add(material, quantity);
+            }
+            
         }
 
         /// <summary>
@@ -50,7 +61,15 @@ namespace CraftingSim.Model
         /// <returns>True if removed successfuly, false if not enough material</returns>
         public bool RemoveMaterial(IMaterial material, int quantity)
         {
-            // TODO Implement Me
+            if (materials.ContainsKey(material))
+            {
+                if (materials[material] > quantity)
+                {
+                    materials[material] -= quantity;
+                    return true;
+                }
+            }
+
             return false;
         }
 
@@ -60,6 +79,7 @@ namespace CraftingSim.Model
         /// <returns>A read only dictionary of materials</returns>
         public IReadOnlyDictionary<IMaterial, int> GetAllMaterials()
         {
+            
             return materials;
         }
 
@@ -84,6 +104,19 @@ namespace CraftingSim.Model
         /// <param name="file">Path to the materials file</param>
         public void LoadMaterialsFromFile(string file)
         {
+            StreamReader rs = new StreamReader(file);
+            do
+            {
+                string s = rs.ReadLine();
+                string[] words = s.Split(',');
+
+
+                Material material = new Material(Convert.ToInt32(words[0]), words[1]);
+                materials.Add(material, Convert.ToInt32(words[2]));
+            } while (rs.ReadLine() != null);
+            
+            Console.WriteLine(materials);
+            Console.ReadLine();
             //TODO Implement Me
         }
     }
