@@ -37,12 +37,10 @@ namespace CraftingSim.Model
                 StreamReader rs = new StreamReader(file);
                 do
                 {
+                    
                     string text = rs.ReadLine()
                 } while (text != "")
-                foreach (string text in rs.ReadLine())
-                {
 
-                }
             }
             IMaterial material = inventory.GetMaterial(value)
 
